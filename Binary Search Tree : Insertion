@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+struct node {
+    
+    int data;
+    struct node *left;
+    struct node *right;
+  
+};
+
+void preOrder( struct node *root) {
+  
+	if( root == NULL ) 
+      return;
+	printf("%d ",root->data);
+	preOrder(root->left);
+	preOrder(root->right);
+  
+}
+
+/* you only have to complete the function given below.  
+node is defined as  
+
+struct node {
+    
+    int data;
+    struct node *left;
+    struct node *right;
+  
+};
+
+*/
+struct node* insert( struct node* root, int data ) {
+    
+    
+struct node* new;                       //create local pointer
+    new= malloc(sizeof(struct node));        //create  node
+    new->data=data;
+    new->left=NULL;
+    new->right=NULL;
+
+ if(root==NULL)
+        return new;
+    else if(data>root->data) // x is greater. Should be inserted to right
+        root->right = insert(root->right, data);
+    else                    // x is smaller should be inserted to left
+        root->left = insert(root->left,data);
+    return root;    
+		
+	
+}
+
